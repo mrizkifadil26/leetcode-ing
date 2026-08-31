@@ -9,8 +9,20 @@
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/main.py",
-            "args": ["word-break"],
-            "console": "integratedTerminal"
+            "args": [
+                "${input:leetcode-case}"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "justMyCode": true
+        }
+    ],
+    "inputs": [
+        {
+            "id": "leetcode-case",
+            "type": "promptString",
+            "description": "LeetCode folder?",
+            "default": "word-break"
         }
     ]
 }
