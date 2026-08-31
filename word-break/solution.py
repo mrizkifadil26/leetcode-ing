@@ -4,16 +4,22 @@ class Solution:
         s: str,
         wordDict: list[str],
     ) -> bool:
-        word_set = set(wordDict)
-        memo_set = {}
+        cache_dict: dict[int, bool] = {}
 
         def can_break(i: int) -> bool:
-            for word in word_set:
+            if i == len(s):
+                return True
+
+            if i in cache_dict:
+                return cache_dict[i]
+
+            for word in wordDict:
                 if s.startswith(word, i) and can_break(i + len(word)):
-                    memo_set[i] = True
+                    cache_dict[i] = True
                     return True
 
-            memo_set[i] = False
+            cache_dict[i] = False
             return False
 
-        return can_break(0)
+        result = can_break(0)
+        return result
